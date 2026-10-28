@@ -1,0 +1,33 @@
+{% extends 'shop/base.html' %}
+{% block title %}Меню{% endblock %}
+{% block content %}
+    <h1 class="center-heading">НАШЕ МЕНЮ</h1>
+    <div class="category-filters">
+        <a href="{% url 'menu' %}" class="filter-btn">ВСЁ</a>
+        <a href="{% url 'menu_category' 'coffee' %}" class="filter-btn">КОФЕ</a>
+        <a href="{% url 'menu_category' 'drink' %}" class="filter-btn">НАПИТКИ</a>
+        <a href="{% url 'menu_category' 'food' %}" class="filter-btn">ЕДА</a>
+    </div>
+    <div class="menu-grid">
+        {% for product in products %}
+        <div class="menu-card" style="position: relative;">
+            {% if product.is_new %}<div class="badge-new">NEW</div>{% endif %}
+            <div class="menu-img-box">
+                {% if product.image %}
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                {% else %}
+                    <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?q=80&w=400" alt="Кофе">
+                {% endif %}
+            </div>
+            <div class="menu-card-content">
+                <h3>{{ product.name }}</h3>
+                <p class="menu-desc">{{ product.description }}</p>
+                <div class="menu-card-footer">
+                    <span class="menu-price">{{ product.price }} BYN</span>
+                    <a href="{% url 'add_to_cart' product.id %}" class="btn-add-cart">В корзину</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}

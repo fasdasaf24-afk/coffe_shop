@@ -1,0 +1,30 @@
+{% extends 'shop/base.html' %}
+{% block title %}Корзина{% endblock %}
+{% block content %}
+<h1 class="center-heading">КОРЗИНА</h1>
+<div class="cart-layout">
+    <div class="cart-items-box">
+        {% for item in cart_items %}
+        <div class="cart-item-row">
+            <div class="cart-item-img">
+                {% if item.product.image %}<img src="{{ item.product.image.url }}">{% else %}<img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?q=80&w=100">{% endif %}
+            </div>
+            <div style="flex-grow: 1;">
+                <h3>{{ item.product.name }}</h3>
+                <p>{{ item.quantity }} шт. × {{ item.product.price }} BYN = <strong>{{ item.item_total }} BYN</strong></p>
+            </div>
+            <a href="{% url 'remove_from_cart' item.product.id %}" style="color: #a95f4d; font-size: 20px; text-decoration: none;">✕</a>
+        </div>
+        {% empty %}
+        <p>Корзина пуста. <a href="{% url 'menu' %}" style="color: #226160;">В меню</a></p>
+        {% endfor %}
+    </div>
+    {% if cart_items %}
+    <div class="cart-summary-box">
+        <h2 style="border-bottom: 1px solid #d0a465; padding-bottom: 15px; margin-bottom: 15px;">ИТОГО</h2>
+        <p style="display: flex; justify-content: space-between; font-size: 1.2em; margin-bottom: 20px;"><span>Сумма:</span><strong>{{ total_price }} BYN</strong></p>
+        <a href="{% url 'delivery' %}" class="btn-submit" style="display: block; text-align: center; text-decoration: none;">ОФОРМИТЬ</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

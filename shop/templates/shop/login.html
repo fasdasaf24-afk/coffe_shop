@@ -1,0 +1,103 @@
+{% extends 'shop/base.html' %}
+{% block title %}Вход{% endblock %}
+{% block content %}
+<style>
+    /* СТИЛИ ТОЛЬКО ДЛЯ ЭТОЙ СТРАНИЦЫ */
+    .auth-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 70vh;
+        padding: 40px 20px;
+    }
+    .auth-card {
+        background: #ffffff;
+        padding: 50px 40px;
+        border-radius: 20px;
+        border: 1px solid #d0a465;
+        box-shadow: 0 20px 50px rgba(5,5,5,0.1);
+        width: 100%;
+        max-width: 450px;
+        text-align: center;
+    }
+    .auth-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 2.5em;
+        color: #226160;
+        margin-bottom: 30px;
+        letter-spacing: 2px;
+    }
+    .auth-form p {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 25px;
+        text-align: left;
+    }
+    .auth-form label {
+        font-size: 0.85em;
+        font-weight: 600;
+        color: #a95f4d;
+        margin-bottom: 8px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    .auth-form input {
+        width: 100%;
+        padding: 15px 0;
+        background: transparent;
+        border: none;
+        border-bottom: 2px solid #d0a465;
+        font-size: 1.1em;
+        color: #050505;
+        outline: none;
+        transition: border-color 0.3s;
+    }
+    .auth-form input:focus {
+        border-bottom-color: #226160;
+    }
+    .auth-btn {
+        width: 100%;
+        padding: 18px;
+        background: #a95f4d;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        font-size: 1.1em;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        cursor: pointer;
+        transition: 0.3s;
+        margin-top: 10px;
+    }
+    .auth-btn:hover {
+        background: #226160;
+        transform: translateY(-2px);
+    }
+    .auth-links {
+        margin-top: 20px;
+        font-size: 0.9em;
+        color: #666;
+    }
+    .auth-links a {
+        color: #226160;
+        text-decoration: none;
+        font-weight: bold;
+    }
+    /* Стилизуем стандартные параграфы Django */
+    .auth-form .helptext { display: none; }
+    .auth-form ul { color: #666; font-size: 0.8em; text-align: left; margin-top: 5px; }
+</style>
+
+<div class="auth-container">
+    <div class="auth-card">
+        <h1 class="auth-title">ВХОД</h1>
+        <form method="post" class="auth-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="auth-btn">ВОЙТИ</button>
+        </form>
+        <p class="auth-links">Нет аккаунта? <a href="{% url 'register' %}">Зарегистрироваться</a></p>
+    </div>
+</div>
+{% endblock %}

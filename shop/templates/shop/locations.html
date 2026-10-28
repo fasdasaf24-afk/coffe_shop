@@ -1,0 +1,30 @@
+{% extends 'shop/base.html' %}
+{% block title %}Локации{% endblock %}
+{% block content %}
+<h1 class="center-heading">НАШИ ЛОКАЦИИ</h1>
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px;">
+    {% for loc in locations %}
+    <div style="background: #fdf6eb; border: 1px solid #d0a465; padding: 20px; border-radius: 12px;">
+        <h2 style="color: #226160;">{{ loc.address }}</h2>
+        <p><strong>Время:</strong> {{ loc.working_hours }}</p>
+        <hr style="border-color: #d0a465; margin: 15px 0;">
+        <h4>Отзывы:</h4>
+        {% for review in loc.reviews.all %}
+            <div style="margin-bottom: 10px; font-size: 0.9em; border-bottom: 1px dashed #ccc; padding-bottom: 10px;">
+                <strong>{{ review.name }}</strong> ({{ review.rating }}★)<br>{{ review.text }}
+            </div>
+        {% empty %}
+            <p style="font-size: 0.9em; color: #888;">Нет отзывов</p>
+        {% endfor %}
+        <form method="post" style="margin-top: 15px;">
+            {% csrf_token %}
+            <input type="hidden" name="location_id" value="{{ loc.id }}">
+            <input type="text" name="name" placeholder="Имя" required style="width: 100%; margin-bottom: 5px; padding: 5px;">
+            <input type="number" name="rating" min="1" max="5" placeholder="Оценка (1-5)" required style="width: 100%; margin-bottom: 5px; padding: 5px;">
+            <textarea name="text" placeholder="Ваш отзыв" required style="width: 100%; margin-bottom: 5px; padding: 5px;"></textarea>
+            <button type="submit" style="background: #226160; color: white; border: none; padding: 8px; cursor: pointer; width: 100%;">Отправить</button>
+        </form>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

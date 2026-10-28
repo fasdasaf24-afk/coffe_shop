@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@700&display=swap');
+
+:root {
+    --black: #050505;
+    --teal: #226160;
+    --terra: #a95f4d;
+    --gold: #d0a465;
+    --cream: #fdf6eb;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Montserrat', sans-serif; background-color: var(--cream); color: var(--black); display: flex; flex-direction: column; min-height: 100vh; padding-bottom: 60px; }
+.container { max-width: 1100px; margin: 0 auto; padding: 0 20px; width: 100%; }
+.main-content { flex: 1; padding: 40px 0; }
+
+/* Шапка */
+.navbar { padding: 20px 0; border-bottom: 2px solid var(--gold); background: var(--cream); position: sticky; top: 0; z-index: 100; }
+.nav-container { display: flex; justify-content: space-between; align-items: center; }
+.logo { font-family: 'Playfair Display', serif; font-size: 24px; color: var(--teal); text-decoration: none; font-weight: 700; }
+.nav-links { display: flex; gap: 20px; align-items: center; }
+.nav-links a { color: var(--black); text-decoration: none; font-size: 14px; font-weight: 600; text-transform: uppercase; transition: 0.3s; }
+.nav-links a:hover { color: var(--terra); }
+.nav-auth { border: 1px solid var(--teal); padding: 8px 15px; border-radius: 4px; color: var(--teal) !important; }
+.nav-auth:hover { background: var(--teal); color: #fff !important; }
+
+/* Кнопки, заголовки */
+.center-heading { font-family: 'Playfair Display', serif; text-align: center; font-size: 2.5em; margin: 40px 0; color: var(--teal); }
+.btn { display: inline-block; padding: 15px 30px; background: var(--teal); color: #fff; text-decoration: none; border-radius: 6px; font-weight: 600; transition: 0.3s; }
+.btn:hover { background: var(--terra); }
+.hero { text-align: center; padding: 80px 20px; }
+.hero h1 { font-family: 'Playfair Display', serif; font-size: 4em; color: var(--teal); margin-bottom: 20px; }
+.hero p { font-size: 1.2em; margin-bottom: 30px; }
+
+/* Меню */
+.menu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; max-width: 1100px; margin: 0 auto; }
+.menu-card { background: #fff; border: 1px solid var(--gold); border-radius: 12px; overflow: hidden; transition: 0.3s; display: flex; flex-direction: column; }
+.menu-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(5,5,5,0.1); }
+.menu-img-box { height: 220px; overflow: hidden; border-bottom: 1px solid var(--gold); }
+.menu-img-box img { width: 100%; height: 100%; object-fit: cover; }
+.menu-card-content { padding: 20px; text-align: center; display: flex; flex-direction: column; flex-grow: 1; }
+.menu-card-content h3 { font-family: 'Playfair Display', serif; font-size: 1.3em; margin-bottom: 10px; color: var(--black); }
+.menu-desc { color: #666; font-size: 0.9em; margin-bottom: 15px; flex-grow: 1; }
+.menu-card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px dashed var(--gold); padding-top: 15px; margin-top: auto; }
+.menu-price { font-size: 1.2em; font-weight: 700; color: var(--terra); }
+.btn-add-cart { background: var(--teal); color: #fff; padding: 8px 15px; border-radius: 4px; text-decoration: none; font-size: 0.8em; font-weight: 700; transition: 0.3s; border: none; cursor: pointer;}
+.btn-add-cart:hover { background: var(--terra); }
+.badge-new { position: absolute; top: 15px; right: 15px; background: var(--terra); color: white; font-size: 11px; font-weight: 700; padding: 5px 10px; border-radius: 20px; z-index: 10; }
+.category-filters { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin: -10px 0 40px 0; }
+.filter-btn { padding: 10px 25px; background: var(--cream); border: 1px solid var(--gold); border-radius: 30px; color: var(--black); text-decoration: none; font-weight: 600; transition: 0.3s; }
+.filter-btn:hover { border-color: var(--teal); color: var(--teal); }
+
+/* Доставка, Корзина */
+.delivery-wrapper, .cart-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; max-width: 1000px; margin: 0 auto; }
+.cart-layout { grid-template-columns: 2fr 1fr; }
+.delivery-form-side, .cart-items-box, .cart-summary-box { background: #fff; padding: 30px; border-radius: 12px; border: 1px solid var(--gold); }
+.form-group { display: flex; flex-direction: column; margin-bottom: 15px; }
+.form-group label { font-size: 0.85em; font-weight: 600; color: var(--teal); margin-bottom: 5px; }
+.form-group input { padding: 12px; border: 1px solid var(--gold); border-radius: 6px; outline: none; }
+.btn-submit { width: 100%; padding: 15px; background: var(--terra); color: #fff; border: none; border-radius: 6px; font-weight: 700; cursor: pointer; transition: 0.3s; }
+.btn-submit:hover { background: var(--teal); }
+.cart-item-row { display: flex; align-items: center; border-bottom: 1px dashed var(--gold); padding: 15px 0; }
+.cart-item-img { width: 80px; height: 80px; border-radius: 8px; overflow: hidden; margin-right: 20px; }
+.cart-item-img img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Чат */
+.chat-widget { position: fixed; bottom: 80px; right: 30px; z-index: 9999; }
+.chat-toggle-btn { background: var(--teal); color: #fff; border: none; width: 60px; height: 60px; border-radius: 50%; cursor: pointer; font-size: 24px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+.chat-window { display: none; position: fixed; bottom: 150px; right: 30px; width: 320px; background: #fff; border: 1px solid var(--gold); border-radius: 12px; flex-direction: column; z-index: 9999; overflow: hidden;}
+.chat-header { background: var(--teal); padding: 15px; color: #fff; font-weight: bold; }
+.chat-body { padding: 15px; height: 200px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
+.chat-input-name, .chat-textarea { width: 100%; padding: 10px; border: none; border-top: 1px solid var(--gold); outline: none; font-family: inherit; }
+.chat-textarea { resize: none; height: 60px; }
+.chat-send-btn { background: var(--terra); color: #fff; border: none; padding: 12px; font-weight: bold; cursor: pointer; }
+.chat-msg { padding: 10px; border-radius: 8px; font-size: 14px; max-width: 80%; }
+.chat-msg.bot { background: var(--cream); align-self: flex-start; }
+.chat-msg.user { background: var(--terra); color: white; align-self: flex-end; }
+
+/* Подвал */
+.footer { text-align: center; padding: 20px; background: var(--black); color: var(--cream); font-size: 12px; margin-top: auto; }
+.alert { text-align:center; padding: 15px; background: var(--teal); color: white; margin-bottom: 20px; }
+
+/* Мобильная панель */
+.mobile-bottom-nav { display: none; }
+@media (max-width: 768px) {
+    .nav-links { display: none !important; }
+    .navbar { padding: 15px 0; justify-content: center; }
+    .nav-container { justify-content: center; }
+    .mobile-bottom-nav {
+        display: flex; justify-content: space-around; align-items: center;
+        position: fixed; bottom: 0; left: 0; width: 100%;
+        background-color: #fff; border-top: 2px solid var(--gold)

@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Runy Coffee | {% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="{% url 'home' %}" class="logo">Runy Coffee</a>
+            <div class="nav-links">
+                <a href="{% url 'home' %}">Главная</a>
+                <a href="{% url 'menu' %}">Меню</a>
+                <a href="{% url 'new' %}">Новинки</a>
+                <a href="{% url 'delivery' %}">Доставка</a>
+                <a href="{% url 'locations' %}">Локации</a>
+                <a href="{% url 'cart_detail' %}">🛒 ({{ cart_item_count }})</a>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'logout' %}" class="nav-auth">Выйти</a>
+                {% else %}
+                    <a href="{% url 'login' %}" class="nav-auth">Вход</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+        {% block content %}{% endblock %}
+    </div>
+
+    <footer class="footer">
+        <p>© 2026 RUNY COFFEE. ТВОЙ ИДЕАЛЬНЫЙ ВКУС.</p>
+    </footer>
+
+    <div class="chat-widget">
+        <button class="chat-toggle-btn" id="chat-toggle">💬</button>
+        <div id="chat-window" class="chat-window">
+            <div class="chat-header">Поддержка <span style="float: right; color: #4caf50;">●</span></div>
+            <div id="chat-body" class="chat-body">
+                <div class="chat-msg bot">Здравствуйте! Чем помочь?</div>
+            </div>
+            <form id="chat-form">
+                {% csrf_token %}
+                <input type="text" name="name" id="chat-name" placeholder="Имя" class="chat-input-name">
+                <textarea name="message" id="chat-message" placeholder="Сообщение..." required class="chat-textarea"></textarea>
+                <button type="submit" class="chat-send-btn">Отправить</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="mobile-bottom-nav">
+        <a href="{% url 'home' %}" class="mobile-nav-item"><span class="icon">🏠</span><span>Главная</span></a>
+        <a href="{% url 'menu' %}" class="mobile-nav-item"><span class="icon">🍔</span><span>Меню</span></a>
+        <a href="{% url 'cart_detail' %}" class="mobile-nav-item"><span class="icon">🛒</span><span>Корзина</span></a>
+        {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}" class="mobile-nav-item"><span class="icon">👤</span><span>Выйти</span></a>
+        {% else %}
+            <a href="{% url 'login' %}" class="mobile-nav-item"><span class="icon">👤</span><span>Вход</span></a>
+        {% endif %}
+    </div>
+
+    <script src="{% static 'js/chat.js' %}"></script>
+</body>
+</html>

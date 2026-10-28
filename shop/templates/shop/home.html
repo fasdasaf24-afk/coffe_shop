@@ -1,0 +1,9 @@
+{% extends 'shop/base.html' %}
+{% block title %}Главная{% endblock %}
+{% block content %}
+    <div class="hero">
+        <h1>Добро пожаловать</h1>
+        <p>Лучший кофе в городе. Попробуйте наши новинки!</p>
+        <a href="{% url 'menu' %}" class="btn">Смотреть меню</a>
+    </div>
+{% endblock %}
