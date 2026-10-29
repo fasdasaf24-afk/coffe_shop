@@ -98,3 +98,16 @@ LOGGING = {
 import os
 if os.environ.get('DEBUG_PROPAGATE_EXCEPTIONS') == 'True':
     DEBUG_PROPAGATE_EXCEPTIONS = True
+    LOGGING = {
+        'version': 1,
+        'disable_existing_loggers': False,
+        'handlers': {
+            'console': {
+                'class': 'logging.StreamHandler',
+            },
+        },
+        'root': {
+            'handlers': ['console'],
+            'level': 'INFO',
+        },
+    }
