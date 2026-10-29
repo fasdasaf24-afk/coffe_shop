@@ -96,3 +96,6 @@ LOGGING = {
         'level': 'INFO',
     },
 }
+import os
+if os.environ.get('DEBUG_PROPAGATE_EXCEPTIONS') == 'True':
+    DEBUG_PROPAGATE_EXCEPTIONS = True
